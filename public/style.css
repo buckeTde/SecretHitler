@@ -84,6 +84,14 @@ button {
     border: 1px solid rgba(255, 165, 38, 0.5);
 }
 
+/* Rollen Auswahl */
+#roleSelect {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
 /* Spieler-Liste */
 #connectedPlayerList {
     list-style: none;

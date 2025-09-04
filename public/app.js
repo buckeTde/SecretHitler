@@ -6,20 +6,26 @@ let gameStarted = false;
 
 // Alternative Namen für Rollen
 const codeWords = {
-    liberal: ['liberal', 'demokrat', 'freiheit', 'friedlich', 'pazifist', 'blau'],
-    fascist: ['fascho', 'nazi', 'ss sa', 'nsdap', 'rot'],
-    hitler: ['hitler', 'adolf', 'führer', 'kanzler', 'diktator']
+    liberal: ['liberal', 'demokrat', 'freiheit', 'friedlich', 'pazifist', 'blau', 'toleranz', 'nett', 'gut', 'humanist'],
+    fascist: ['fascho', 'nazi', 'ss sa', 'nsdap', 'rot', 'böse', 'afd', 'staat', 'national', 'militär'],
+    hitler: ['hitler', 'adolf', 'führer', 'kanzler', 'diktator', 'macht', 'orban', 'trump', 'palpatine', 'stalin']
 };
 
 // Verfügbare Rollen
 const roleOptions = [
+    { value: 'liberal', label: standardizeWord(getRandomCodeWord('liberal'), 15) },
+    { value: 'fascist', label: standardizeWord(getRandomCodeWord('fascist'), 15) },
+    { value: 'hitler', label: standardizeWord(getRandomCodeWord('hitler'), 15) }
+];
+/*const roleOptions = [
     { value: 'liberal', label: getRandomCodeWord('liberal') },
     { value: 'fascist', label: getRandomCodeWord('fascist') },
     { value: 'hitler', label: getRandomCodeWord('hitler') }
-];
+];*/
 
 
 // Erwartete Rollenverteilung für Secret Hitler
+// Doppelte Deklration, duplikat in server.js
 const possibleRoles = {
     3: { liberal: 1, fascist: 1, hitler: 1, hitlerknows: true },
     5: { liberal: 3, fascist: 1, hitler: 1, hitlerknows: true },
@@ -29,6 +35,17 @@ const possibleRoles = {
     9: { liberal: 5, fascist: 3, hitler: 1, hitlerknows: false },
     10: { liberal: 6, fascist: 3, hitler: 1, hitlerknows: false }
 };
+
+function standardizeWord(role, length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyzäöü';
+    const extra = length - role.length;
+    if (extra <= 0) return role;
+
+    const prefix = Array.from({ length: Math.floor(extra / 2) }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    const suffix = Array.from({ length: Math.ceil(extra / 2) }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+
+    return prefix +'  ' + role +'  ' + suffix;
+}
 
 function getRandomCodeWord(role) {
     return codeWords[role][Math.floor(Math.random() * codeWords[role].length)];
@@ -252,7 +269,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Join-Handler
     document.getElementById('joinBtn').addEventListener('click', () => {
-        const name = document.getElementById('nameInput').value;
+        const name = document.getElementById('nameInput').value.toLowerCase();
         const role = document.getElementById('roleSelect').value;
 
         socket.emit('join', { name, role });

@@ -22,7 +22,17 @@ server.listen(PORT, () => {
 
 
 
-
+// Erwartete Rollenverteilung für Secret Hitler
+// Doppelte Deklration, duplikat in app.js
+const possibleRoles = {
+    3: { liberal: 1, fascist: 1, hitler: 1, hitlerknows: false },
+    5: { liberal: 3, fascist: 1, hitler: 1, hitlerknows: true },
+    6: { liberal: 4, fascist: 1, hitler: 1, hitlerknows: true },
+    7: { liberal: 4, fascist: 2, hitler: 1, hitlerknows: false },
+    8: { liberal: 5, fascist: 2, hitler: 1, hitlerknows: false },
+    9: { liberal: 5, fascist: 3, hitler: 1, hitlerknows: false },
+    10: { liberal: 6, fascist: 3, hitler: 1, hitlerknows: false }
+};
 
 let gameStarted = false;
 
@@ -89,6 +99,8 @@ function setupInfoMessage(playerSocketId) {
 
         let infoMsg;
         if (requestingPlayer.role === 'fascist') {
+            infoMsg = `Faschisten: ${fascists.join(', ')}\nHitler: ${hitler}`;
+        } else if (requestingPlayer.role === 'hitler' &&  possibleRoles[playingPlayers.length]?.hitlerknows) {
             infoMsg = `Faschisten: ${fascists.join(', ')}\nHitler: ${hitler}`;
         } else {
             infoMsg = 'Hier steht nix';
