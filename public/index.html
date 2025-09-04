@@ -1,0 +1,53 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Secret Hitler Lobby</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Secret Hitler Lobby</h1>
+
+    <div id="hostNote" class="hide">👑 Du bist der Host 👑</div>
+
+    <div id="gameState" class="hide">🔐 Spiel läuft bereits! 🔐</div>
+    
+    <div id="joinForm">
+        <label id="nameLabel" for="nameInput">Name:</label>
+        <input type="text" id="nameInput" required>
+
+        <label id="roleLabel" for="roleSelect" class="hide">Rolle:</label>
+        <select id="roleSelect" required class="hide">
+            <option value="" disabled selected>-- Bitte wählen --</option>
+            <!-- Optionen werden per JS zufällig eingefügt -->
+        </select>
+
+        <button id="joinBtn">Beitreten</button>
+    </div>
+
+    <div id="errorNote" class="hide"> </div>
+
+
+    <div id="playerRole" class="hide"></div>
+    <button id="playerRoleBtn" class="hide">🔒 Rolle zeigen 🔒</button>
+
+    <div id="gameInfo" class="hide"></div>
+    <button id="gameInfoBtn" class="hide">🛈 Geheiminformationen 🛈</button>
+
+    <div id="connectedPlayersContainer" class="hide">
+        <h3>Spieler:</h3>
+        <ul id="connectedPlayerList"></ul>
+    </div>
+    
+    <button id="startGameBtn" class="hide">🎬 Spiel starten 🎬</button>
+    <button id="checkRolesBtn" class="hide">🔍 Check Rollen 🔍</button>
+    <button id="resetLobbyBtn" class="hide">🔄 Reset Lobby 🔄</button>
+</body>
+
+</html>
