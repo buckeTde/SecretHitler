@@ -244,3 +244,24 @@ select:focus {
 #roleLabel.hide {
     display: none;
 }
+
+h1,
+#playerRoleBtn,
+#gameInfoBtn,
+#playerRole,
+#gameInfo,
+#nameLabel,
+#roleLabel,
+#roleSelect,
+#startGameBtn,
+#checkRolesBtn,
+#resetLobbyBtn,
+#hostNote,
+#gameState,
+#joinBtn,
+#connectedPlayersContainer,
+.makeHostBtn {
+  user-select: none;        /* verhindert Text markieren */
+  -webkit-user-select: none; /* Safari / iOS */
+  -ms-user-select: none;     /* ältere Edge-Versionen */
+}
