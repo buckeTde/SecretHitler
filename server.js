@@ -94,16 +94,16 @@ function setupInfoMessage(playerSocketId) {
         const fascists = playingPlayers
             .filter(player => player.role === 'fascist')
             .map(player => player.name);
-
         const hitler = playingPlayers.find(p => p.role === 'hitler')?.name || '';
 
+        const fakeFascists = fascists.map(() => 'nixnix').join(', ');
+        const fakeHitler = 'nixnix';
+
         let infoMsg;
-        if (requestingPlayer.role === 'fascist') {
-            infoMsg = `Faschisten: ${fascists.join(', ')}\nHitler: ${hitler}`;
-        } else if (requestingPlayer.role === 'hitler' &&  possibleRoles[playingPlayers.length]?.hitlerknows) {
+        if (requestingPlayer.role === 'fascist' || (requestingPlayer.role === 'hitler' &&  possibleRoles[playingPlayers.length]?.hitlerknows)) {
             infoMsg = `Faschisten: ${fascists.join(', ')}\nHitler: ${hitler}`;
         } else {
-            infoMsg = 'Hier steht nix';
+            infoMsg = `Faschisten: ${fakeFascists}\nHitler: ${fakeHitler}`;
         }
 
         io.to(playerSocketId).emit('updateGameInfo', infoMsg);
