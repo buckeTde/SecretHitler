@@ -6,9 +6,9 @@ let gameStarted = false;
 
 // Alternative Namen für Rollen
 const codeWords = {
-    liberal: ['liberal', 'demokrat', 'freiheit', 'friedlich', 'pazifist', 'blau', 'toleranz', 'nett', 'gut', 'humanist'],
-    fascist: ['fascho', 'nazi', 'ss sa', 'nsdap', 'rot', 'böse', 'afd', 'staat', 'national', 'militär'],
-    hitler: ['hitler', 'adolf', 'führer', 'kanzler', 'diktator', 'macht', 'orban', 'trump', 'palpatine', 'stalin']
+    liberal: ['liberal', 'demokrat', 'friedlich', 'pazifist', 'blau', 'nett', 'gut', 'antifa'],
+    fascist: ['fascho', 'nazi', 'nsdap', 'rot', 'böse', 'afd', 'staat', 'national', 'npd'],
+    hitler: ['hitler', 'adolf', 'führer', 'kanzler', 'diktator', 'orban', 'trump', 'stalin', 'erdogan']
 };
 
 // Verfügbare Rollen
@@ -17,12 +17,6 @@ const roleOptions = [
     { value: 'fascist', label: standardizeWord(getRandomCodeWord('fascist'), 15) },
     { value: 'hitler', label: standardizeWord(getRandomCodeWord('hitler'), 15) }
 ];
-/*const roleOptions = [
-    { value: 'liberal', label: getRandomCodeWord('liberal') },
-    { value: 'fascist', label: getRandomCodeWord('fascist') },
-    { value: 'hitler', label: getRandomCodeWord('hitler') }
-];*/
-
 
 // Erwartete Rollenverteilung für Secret Hitler
 // Doppelte Deklration, duplikat in server.js
